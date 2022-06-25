@@ -37,6 +37,7 @@ func main() {
 	var u = uint(f)
 
 	// Do not permission implicit casting, you must explicit casting
+	// but other languages may allow implicit casting
 	// var f2 float32 = i
 
 	fmt.Println(i, f, u)
