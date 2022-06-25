@@ -28,6 +28,6 @@ func main() {
 	fmt.Println("The tomorrow is", tomorrow)
 
 	// print as formatted
-	longFormat := "02-01-2006"
-	fmt.Println(tomorrow.Format(longFormat))
+	format := "02-01-2006 03:04:05"
+	fmt.Println(tomorrow.Format(format))
 }
