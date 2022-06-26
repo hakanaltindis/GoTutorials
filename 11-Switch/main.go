@@ -2,6 +2,17 @@ package main
 
 import "fmt"
 
+/*
+ * A switch statement is a shorter way to write a sequence of if - else statements.
+ * It runs the first case whose value is equal to the condition expression.
+ *
+ * Go's switch is like the one in C, C++, Java, JavaScript, and PHP,
+ * except that Go only runs the selected case, not all the cases that follow.
+ * In effect, the break statement that is needed at the end of each case in those languages
+ * is provided automatically in Go. Another important difference is that Go's switch cases
+ * need not be constants, and the values involved need not be integers.
+ */
+
 func main() {
 	foo := 3
 
@@ -13,6 +24,8 @@ func main() {
 		fmt.Println("Two")
 	case 3:
 		fmt.Println("Three")
+	case fooFunc():
+		fmt.Println("Four")
 	default:
 		fmt.Println("None")
 	}
@@ -20,11 +33,13 @@ func main() {
 	// do not use condition in switch
 	// condition in case statements
 	switch {
+	case foo > 1:
+		fmt.Println("One")
 	case foo == 3:
 		fmt.Println("Three")
 		fallthrough
-	case foo > 1:
-		fmt.Println("One")
+	case fooFunc() == 4:
+		fmt.Println("Four")
 	default:
 		fmt.Println("None")
 	}
@@ -80,4 +95,8 @@ func main() {
 	// 		fmt.Println("Second case")
 	// }
 	// Output:2 1 2 First case Second case
+}
+
+func fooFunc() int {
+	return 4
 }
