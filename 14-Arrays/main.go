@@ -17,7 +17,7 @@ func main() {
 	fmt.Println(a)
 
 	// 2. Assign value on initialization time
-	primes := []int{2, 3, 5, 7, 11, 13}
+	primes := [6]int{2, 3, 5, 7, 11, 13}
 	fmt.Println(primes)
 
 	// 3. Manipulate items of array
