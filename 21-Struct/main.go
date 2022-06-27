@@ -52,4 +52,15 @@ func main() {
 	h3 := &Human{"Hakan", "Altındiş", 32} // assign default values to all fields
 	fmt.Println(h3)
 
+	// 5. What happened If I manipulate a field of struct in a function?
+	// We have to send pointer of h to modify value
+	ChangeName(&h, "Mehmet")
+	fmt.Println(h)
+
 }
+
+func ChangeName(h *Human, newName string) {
+	h.FirstName = newName
+}
+
+// What happened If I manipulate a field of struct in a function?
