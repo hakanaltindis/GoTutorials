@@ -53,6 +53,8 @@ func main() {
 	// 5. Check key in map
 	_, exists := cities["ANK"]
 	if !exists {
-		fmt.Printf("The %v key does not exist in map", "ANK")
+		fmt.Printf("The %v key does not exist in map\n", "ANK")
 	}
+
+	fmt.Println("Value is", cities["ANK"])
 }
