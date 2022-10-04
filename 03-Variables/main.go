@@ -2,6 +2,10 @@ package main
 
 import "fmt"
 
+/*
+ * More explain for declaration syntax => https://go.dev/blog/declaration-syntax
+ */
+
 // 9. define variable out of scope
 var number = 5
 
@@ -67,5 +71,9 @@ func main() {
 		message5 = "Scope Message"
 	)
 	fmt.Println(num, message5)
+
+	var array []int
+	array = append(array, 1, 2, 3, 4)
+	fmt.Println(array)
 
 }

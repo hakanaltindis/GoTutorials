@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io"
+	"os"
+)
 
 /*
  * A defer statement defers the execution of a function until the surrounding function returns.
@@ -10,6 +14,13 @@ import "fmt"
  * Deferred function calls are pushed onto a stack. When a function returns,
  * its deferred calls are executed in last-in-first-out order LIFO
  */
+
+/*
+  * ***** RULES OF Defer *****
+	* 1. A deferred function’s arguments are evaluated when the defer statement is evaluated.
+	* 2. Deferred function calls are executed in Last In First Out order after the surrounding function returns.
+	* 3. Deferred functions may read and assign to the returning function’s named return values.
+*/
 
 var isConnected bool = false
 
@@ -49,4 +60,49 @@ func connect() {
 func disconnect() {
 	isConnected = false
 	fmt.Println("Disconnected!")
+}
+
+/*
+ *   || Excellent Sample for defer usage	||
+ *   ||																		||
+ *   \/																		\/
+ */
+func CopyFile(dstName, srcName string) (written int64, err error) {
+	src, err := os.Open(srcName)
+	if err != nil {
+		return
+	}
+
+	dst, err := os.Create(dstName)
+	if err != nil {
+		return
+	}
+
+	written, err = io.Copy(dst, src)
+	dst.Close()
+	src.Close()
+	return
+}
+
+/*
+ * This works, but there is a bug. If the call to os.Create fails, the function will return without closing the source file.
+ * This can be easily remedied by putting a call to src.Close before the second return statement,
+ * but if the function were more complex the problem might not be so easily noticed and resolved.
+ * By introducing defer statements we can ensure that the files are always closed:
+ */
+
+func CopyFile2(dstName, srcName string) (written int64, err error) {
+	src, err := os.Open(srcName)
+	if err != nil {
+		return
+	}
+	defer src.Close()
+
+	dst, err := os.Create(dstName)
+	if err != nil {
+		return
+	}
+	defer dst.Close()
+
+	return io.Copy(dst, src)
 }
