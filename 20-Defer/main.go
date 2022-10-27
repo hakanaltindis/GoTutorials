@@ -106,3 +106,9 @@ func CopyFile2(dstName, srcName string) (written int64, err error) {
 
 	return io.Copy(dst, src)
 }
+
+// Other good example
+func c() (i int) {
+	defer func() { i++ }()
+	return 1
+}
