@@ -6,7 +6,9 @@ import (
 	"hakanaltindis/helper"
 )
 
+// go mod init example/hello
 // go mod edit -replace example.com/greetings=../greetings
+// go mod tidy
 
 func main() {
 	fmt.Println("Hakan!")
