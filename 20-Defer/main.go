@@ -107,6 +107,10 @@ func CopyFile2(dstName, srcName string) (written int64, err error) {
 	return io.Copy(dst, src)
 }
 
+/*
+ * Go Defer good examples link: https://go.dev/blog/defer-panic-and-recover
+ */
+
 // Other good example
 func c() (i int) {
 	defer func() { i++ }()
